@@ -6,20 +6,20 @@ DATE ?= date
 #基础与公共命令
 
 install:
-    @npm install $(NPM_REGISTRY)
+	@npm install $(NPM_REGISTRY)
 
 ####################################################################################
 #启动与重启服务
 
 run:
-    @NODE_ENV=dev node app.js
+	@NODE_ENV=dev node app.js	
 
 
 autoStart:
-    @NODE_ENV=prod nohup pm2 start bin/www -i 12 --name "webServer" --max-memory-restart 1024M >> logs/webServer.log 2>&1 &
+	@NODE_ENV=prod nohup pm2 start bin/www -i 12 --name "WebServer" --max-memory-restart 1024M >> logs/WebServer.log 2>&1 &
 
 autoRestart:
-    @NODE_ENV=prod nohup pm2 restart "webServer" >> logs/webServer.log 2>&1 &
+	@NODE_ENV=prod nohup pm2 restart "WebServer" >> logs/WebServer.log 2>&1 &
 
 
 start: install autoStart
